@@ -1,0 +1,39 @@
+\subsection{Fault Localization through Test Logs}
+
+
+During code review the cause of a failure is usually obvious as the team has been manually reading over the code~\cite{}. In contrast, a test failure is usually a symptom of the underlying fault and the diagnose required to locate the cause can be time consuming~\cite{}. This is especially true at Ericsson where a test may fail one day due to an environment problem and another day from a product fault. Although our anomaly analysis helps order the faults and gives a sense of how long a test has been failing, it does not help provide a precise reason and location of the fault. To do this, we plan to conduct log analysis on tests. Our co-investigator Dr. Shang is an expert in log analysis. We currently have a masters student, Amar, who is partially funded by a MITACs and has started to collect and clean the logs.
+
+The main problem at Ericsson, is that there is an overwhelming amount of detailed log information. Our plan will proceed according to the followings:
+
+\begin{enumerate}
+
+\item Data: Extract the test data from a stream of events, counters, and natural languages logs.
+
+\item Units: Extract the units from the data, \ie which nodes are connected to which mobile devices.
+
+\item Noise: Reduce noise through log templates. Abstract the logs to keep only relevant data \todo{Ian: source vocab vs log vocab}
+
+\item Compress sequences: Combine the units and the templates to extract useful sequences and eliminate or compresses irrelevant and redundant sequences.
+
+\item Delta: Compare the logs from runs that are successful with those that are unsuccessful. We also plan to do other comparisons such as comparing the test logs from the current an previous release.
+
+\item Output: We will output the differences in logs, which should indicate why a run was unsuccessful.
+
+\end{enumerate}
+
+% oops should have used this list:
+%1. Abstracting logs into a sequence of events to illustrate the execution flow of the tests.
+%2. Compare event sequences to determine whether the failed test are due to new root causes or existing ones.
+%3. Linking logs to codes to identify/scope down? the scenarios (root causes) of the failed test.
+
+
+
+Our novel contribution is to abstract log information and create multiple
+baselines to identify the likely location of failure in the source code.
+Similar approaches have been successful applied by Shang~\cite{} to compare the
+logs from test and production environments. In Ericsson's context, we do not
+have the production logs, so we must change our comparisons to involve previous
+test logs from other releases and successful and unsuccessful runs. \todo{Ian:
+further novel aspects include ...}
+
+

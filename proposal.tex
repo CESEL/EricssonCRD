@@ -1,0 +1,89 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{fancyhdr}
+\usepackage[margin=1.87cm]{geometry}%rounded up from 1.87, just to be safe...
+%\usepackage{parskip}
+\usepackage{times} %make sure that the times new roman is used
+\usepackage{comment}
+
+\usepackage{xspace}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+
+\usepackage{xcolor,colortbl}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}\PackageWarning{TODO:}{#1!}}
+
+\usepackage{url}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}%		     % the name
+{1}%			     % the level
+{0mm}%			     % the indent
+%{-\baselineskip}%	      % the before skip
+{.75mm}
+{.03\baselineskip}%	     % the after skip
+{\normalfont\large\bf} % the style
+}
+
+\begin{document}
+
+\fancyhead{}
+%\fancyhf{}
+\pagestyle{fancy}
+\rhead{-- 309207-- \textbf{Peter C Rigby}} %This puts your name at the top right, outside the margin
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{center}
+\begin{LARGE}
+\noindent
+\center{{\bf Test Effectiveness, Localization, and Prioritized Generation in Complex Test Environments}}
+\end{LARGE}
+\end{center}
+
+
+%sections: http://www.nserc-crsng.gc.ca/OnlineServices-ServicesEnLigne/instructions/101/crd_eng.asp
+%Synopsis
+
+\todo{I have other sections like intro, but let's just focus on the milestones for now.}
+
+\section*{Background: Overview of Research Approach and Data}
+
+\section{Research Milestones} 
+
+This research proposal builds upon an NSERC Engage and an ongoing MITACs. For
+each milestone, we describe the work that we have done over the last six months
+and the direction we plan for this proposal. The proposal consists of \todo{X}
+milestones. In Milestone 1, we will evaluate test effectiveness and build a
+test prioritization model. In Milestone 2, we will use the test failure
+distribution to find anomalies and differentiate between product and
+environmental faults. In Milestone 3, we will improve fault localization by
+mining test logs. In Milestone 4, we integrate our results and use them to
+quantify the change risk associated with test failures and relate them to
+customer found defects to identify which tests should be run for a change,
+which tests should be run after a failure, and which tests should be written to
+stop fault slipthrough to customers.  We integrate our work into a framework
+that provides actionable, timely results to Ericsson developers, we call this
+tool TestGuru.
+
+%peter needs to re-work parts of this
+\input{effectiveness.tex}
+
+%a bit of redundancy here
+\input{anomalies.tex}
+
+%logs and test for Ian
+\input{logs.tex}
+
+%testGuru for Emad
+\input{testGuru.tex}
+
+\todo{I have other sections like HQP, but let's just focus on the milestones for now.}
+
+\pagebreak
+%\setcounter{page}{1}
+\pagenumbering{gobble}
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
+
+\end{document}

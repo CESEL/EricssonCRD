@@ -1,0 +1,11 @@
+\section{TestGuru: Risk and History}
+
+Our work with Ericsson has taken applied problems and developed research-based solutions. To ensure that our results are acted upon, we plan to integrate our results into TestGuru. TestGuru will have three parts. \todo{Emad please elaborate}
+
+\textbf{Change risk:} Shihab~\cite{} has developed a CommitGuru that uses a logistic regression to calculate how likely a change is to introduce a defect, \ie how risky is the change. Features include the number of source code lines changes, the expertise of the author, and \todo{Emad's favourite}. Our goal is to add historical test executions and test log information to assess the risk of a change. While some preliminary works have investigated adding these features to statistical fault model\cite{herzig,others}, our research outcome will be an systematic empirical study of multiple projects to determine how effective tests are at predicting change risk.
+
+\textbf{Test prioritization:} Instead of predicting change risk, we can use the same predictors to determine which are the most effective tests. This will build on our first milestone that is limited to co-failure distribution and add information such as developer expertise. \todo{Could make this more interesting by suggesting the next test to be run instead of prioritizing upfront}
+
+\textbf{Test creation:} Ericsson managers provided examples where there are many tests execution that pass, but customers still find defects. Our models will be helpful in indicating the areas of the system that need critically need new test or need tests to be re-written.
+
+

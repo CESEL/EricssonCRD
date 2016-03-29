@@ -1,0 +1,325 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{fancyhdr}
+\usepackage[margin=1.87cm]{geometry}%rounded up from 1.87, just to be safe...
+%\usepackage{parskip}
+\usepackage{times} %make sure that the times new roman is used
+\usepackage{comment}
+
+\usepackage{xspace}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+
+\usepackage{xcolor,colortbl}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}\PackageWarning{TODO:}{#1!}}
+
+\usepackage{url}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}%		     % the name
+{1}%			     % the level
+{0mm}%			     % the indent
+%{-\baselineskip}%	      % the before skip
+{.75mm}
+{.03\baselineskip}%	     % the after skip
+{\normalfont\large\bf} % the style
+}
+
+\begin{document}
+
+\fancyhead{}
+%\fancyhf{}
+\pagestyle{fancy}
+\rhead{-- 309207-- \textbf{Peter C Rigby}} %This puts your name at the top right, outside the margin
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{center}
+\begin{LARGE}
+\noindent
+\center{{\bf Test Effectiveness, Localization, and Prioritized Generation in Complex Test Environments}}
+\end{LARGE}
+\end{center}
+
+
+
+%Synopsis
+
+A cellular base station connects cell phones to a voice and data network via
+LTE (4G) or 3G standards. The software that runs on these base stations
+contains not only complex signalling logic with stringent real-time
+constraints, but also must be highly reliable, providing safety critical
+services, such as 911 calling. At Ericsson Ottawa, testing base station
+software is time consuming and involves expensive specialized hardware. For
+example, testers may need to simulate cellular devices, such as when a base
+station is overwhelmed by requests from cell users at a music concert. In
+order to maximize the return on investment of Ericsson's testing efforts, we
+plan to use historical artifacts including past code changes, bugs, peer
+reviews, test logs, and test runs to create statistical models to (1) evalute
+test effectiveness, (2) prioritize tests, and (2) help developers locate the
+cause of a failure. The outcome of this work will advance the state-of-the-art
+in test prioritization, test log analysis, and fault localization and provide
+Ericsson with a more efficient test infrastructure.
+
+\section*{Background: Overview of Research Approach and Data}
+
+The proposed work intersects three areas of software engineering: test
+prioritization and effectiveness, test log analysis, and empirical software engineering. 
+
+Regression testing research has three streams of research~\cite{Yoo2012STVR}.
+%
+%: minimization, selection, and priorization\cite{Yoo2012STVR}.
+%
+The first, {\it minimization}, involves eliminating tests that are redundant or
+of low value. In the literature, the problem has been reduced to one of code
+coverage, for example, tests become redundant as the system evolves and more
+than one test covers the same control flow. As a result, much of the work in
+this area is algorithmic, such as transforming it into a spanning set problem
+\cite{Marre2003TSE}, using divide-and-conquer strategies \cite{Chen1996IPL},
+and greedy algorithms \cite{Tallam2005SENotes}. 
+%
+%These algorithms are based on source code coverage, and miss important
+%historical information, such as whether a file is at higher risk to failure
+%because it has been changed recently.
+The second, {\it selection}, uses the same static analysis techniques such as
+coverage \cite{Taha1989COMPSAC} and slicing \cite{Jeffrey2006COMPSAC}, but
+selects tests that cover source files that are at higher risk because they have
+been changed recently \cite{Rothermel1994ICSE}. 
+%
+The third, {\it prioritization}, orders tests such that expensive, low-value,
+or long running tests are run after tests that find faults early.  We
+focus on test prioritization because, at Ericsson, once a test fails an
+engineer must intervene to discover the fault, so an ordering that makes the
+test run fail early is more cost effective.
+%Running further tests has little value. 
+While early prioritization techniques continued to use coverage measures to
+gauge priority, more recent approaches incorporate the faults found in past
+test runs \cite{Kim2002ICSE} and change relationships among files
+\cite{Sherriff2007ISSRE} to identify high value tests. 
+%
+\todo{Cite Herzig and others}
+
+\todo{Is there really a fourth type now, which includes MSR and social measures as well?}
+
+We combine test prioritization techniques with empirical software engineering.
+Empirical researchers use historical data to create models to help developers,
+for example, identify bugs and risky changes \cite{DAmbros2010MSR}, locate
+fault introducing changes \cite{Kim2006ASE}, and understand the faults found
+during code review \cite{Rigby2014TOSEM}.
+%and identify relevant collaborators \cite{Cataldo2006CSCW}.  
+Relatively little work has combined test archives with information from other
+artifacts, such as bug reports and code reviews. One of the first studies to
+look at historical artifacts was done by co-investigator Dr. Shihab, during his
+PhD. In this work, he created a statistical model from the source code history
+to help developers decide where to write tests for a legacy system at
+Blackberry \cite{Shihab2011SPE}.
+
+A major factor limiting research into historically based test prioritization is
+information about past runs and links to other development artifacts.  Ericsson
+collects massive histories of logs, test runs, and development artifacts, in
+part to provide for reproducibility of software and test lineups and auditing.
+Much of the current analysis is done manually where developers must sift
+through this information to locate the root cause of a failure. We have begun
+to automate and guide developers to help with prioritization test and
+localizing faults.
+
+
+\section*{Research Milestones} 
+
+
+This research proposal builds upon an NSERC Engage and an ongoing MITACs. For each milestone, we describe the work that we have done over the last six months and the direction we plan for this proposal. The proposal consists of four milestones. In Milestone 1, we will evaluate test effectiveness and build a test prioritization model. In Milestone 2, we will use the test failure distribution to find anomalies and differentiate between product and environmental faults. In Milestone 3, we will improve fault localization by mining test logs. In Milestone 4, we will quantify the change risk associated with test failures and relate them to customer found defects and other mined software measures, such as expertise. 
+
+The outcome measures in this work are cost and velocity. 
+
+One of the major outcomes of each research question is the tools and reports that are used by Ericsson managers and testers. Students work onsite at Ericsson and there are bi-weekly meetings with managers to ensure that feedback is given early and incorporated into future work. 
+
+We plan to fund three graduate students at all times. There will be two masters and one PhD student. Two students will be on site at Ericsson and one will be at Concordia. While at Ericsson, students will be ... while at concordia they will be ...
+%
+Rigby will make weekly visits to Ericsson to work analyize data, meet with Ericsson managers, and help students.
+
+\subsection*{\it RQ1. Test prioritization and test effectiveness:} Not all tests are equally important, but all tests must be run. With Ericsson's hard quality requirements, all tests must be run before a change can be released. However, some tests can span days, while others take seconds. Further, some tests have not failed in months, while some are new or fail regularly. Since a failure will stop the build process and require an engineer to intervene, a clear research direction will be to prioritize based on past failures and test running time \cite{Kim2002ICSE,Yu2008ICSE}. A simple ordering that makes low cost, high value tests fail early will make the process more efficient. 
+
+\begin{comment}
+How many tests need to be run to find actual defects? 
+Which tests effectively find the same thing? 
+Which SWU are effected?
+\end{comment}
+
+
+\textbf{Work completed:} An undergraduate student spent four months doing initial data clean on tests. This involved significant effort as the data was not gathered for futher analalysis. As a result of this cleaning and linking, we answered a two basic research questions: which tests find faults for a software unit? Which tests find the most faults? 
+
+From the first question, we were able to show Ericsson managers which software units had the most problems. We have replicated this work on other units. They then investigated to determ \todo{ask gary what he found}.
+
+To determine test effectiveness, we ranked files by the number of faults that they have found in the past. Taking the top 25\% of test, we found that they find 80\% of the future faults. Taking the top 50\% of test finds only \todo{X points more} tahan the ... This simple finding has lead Ericsson testers to re-evaluate the set of tests that are run. However, one difficult is that \todo{can't just change the order}.
+
+\textbf{Planned work:} 
+
+Given that a test has failed, which test should be run next? 
+
+\textbf{Test Scope and Commit Groups}
+\todo{Test scope and commit grouping to lead to optimal testing}
+
+
+\textbf{Test co-failures}
+\todo{A reality often ignored is that tests cannot necessarily be abritarily reordered}
+
+Test prioritization work assumes independence among tests. Discussions with Ericsson test managers indicated that attempts to reorder test have been very difficult because the tests were implicily dependent on each other. 
+
+Continuing our work on test redundancy, we plan to determine the value of running the remaining test once there is a failure. To do this, we determine the co-failure and failure-pass distribution. If a distribution. 
+Our goal is to determine the amount of additional information that is provided by running the remaining tests after a failure. 
+
+
+\textbf{Standard MSR measures and testing}
+\todo{recent work by Herzig and others}
+Adding to these measures, we will develop change risk and social measures, such as risk analysis based on histories of defects across software areas and development teams. The research outcome of this stage will be a better understanding of the archival measures that provide good test prioritization.
+
+\subsection*{RQ2. Fault categorization and localization model} 
+
+\begin{comment}
+Since tests fail non-deterministically
+Which failures should be looked at first?
+Use failure distributions to find anomalous failures and report to testing team each morning.
+\end{comment}
+
+
+\textbf{Past work}
+Since fault localization is a wide research area including debugging techniques and statistical bug models, in NSERC Engage work, we focussed on the narrow question -- Did that test fail because of a problem in the development environment or product? This problem is unusually difficult at Ericsson because the environment is exceedingly complex.  For example, test equipment is so expensive that developers in Ottawa can request their tests be run on specialized equipment that is only available in Sweden, and vice versa.
+%
+
+Is a test failure anomalous? The nature of base station tests makes Ericsson's test environment complex and as a result many tests fail sporadically from environmental problems. Our work has focussed on determining the test failure distribution for each test. We label tests that fall outside this 95\% confidence interval to be anomalies. For example, a test that has failed more than once in the night light test runs, will either have to pass or fail three or more times to be flagged as an anomaly. In contrast, a test that passes every day for two months and fails on a nightly run, will be flagged as an anomaly. Each test has its own failure distribution and so anomalies for certain tests will …
+
+From a research perspective it is important to understand if this technique can be applied in other settings. We are currently using this data on other Ericsson sites in Sweden. At our suggestion, Herzig, at Microsoft research is running the anomaly detection technique at Microsoft. His findings indicate that anomalous test failures are almost always environmental faults and that can be safely ignored as they will not usually reappear in a subsequent run.
+
+The outcome of this work has been very positively received. For example, the testing team, which consists of 8 developers who runthrough test failures every day, use the test anomalies as a technique to prioritize tests. Our interactions with these testers has lead to additional enhancements, such as determining the number of times a test has been an anomaly on the scale of a week, month, and for the current release. 
+
+\textbf{Proposed work:} 
+Continuing work are twofold: first, we are looking at individual tests. Combining and creating co-failure distributions will provide additional information. This is especially important  in …
+
+
+\subsection{Localization through test logs}
+
+\begin{comment}
+*Data
+Raw streaming of events 
+Counters on nodes
+Test logs 
+*Reduce noise through templates/abstractions
+Remove terms not found in source code (ie create a dictionary)
+Compare it to itself and eliminate differences 
+*Create sequences based on units
+Test node run and mobile device run
+*Compress sequences
+Eliminate duplicates in a sequence
+*Create baselines and delta for fault localization
+successful run vs failed run
+release 15b vs release 16a
+test logs vs production logs
+\end{comment}
+
+Ericsson collects a logs from each test run. Through a MITACs grant, a student has started to parse some of this data in Februrary 2016. Our goal has been to include a ...
+
+Our co-investigator Dr. Shang is an expert in log analysis. However, most of his work has focussed on logs collected in testing vs those in production. In the Ericsson context, there are no production logs, however, there is a massively large ...
+
+We plan to ...
+
+ This month, We plan 
+
+\todo{Bringing in Ian Shang to help with test log analysis}
+
+
+Once a test fails, a developer must determine the root cause of the failure and
+whether it is an environment or product problem. Unfortunately, much of the
+other information in the report is added sporadically. We will investigate the
+reliability of existing fields in the reports and supplement this with freeform
+data extracted using existing NLP techniques. Our goal is to train a classifier
+based on past manual categorizations to help developers differentiate these
+failure types. In the future, we plan to refine this coarsegrained
+categorization to a finegrained localization at the file or method level by
+linking issue reports to other software artifacts.
+
+\section{Modeling Risk, Velocity, and Cost}
+
+\begin{comment}
+Risk: bug models including tests to identify risk changes and update packages
+
+Velocity: How long did it take for the test to find the problem?
+
+Cost: Simulations to determine the slipthrough cost vs the human and machine costs.
+\end{comment}
+
+
+\todo{commit guru}
+\todo{Rigby turnover risk management models based on financial can be applied in this context (using extreme value theory)}
+
+\todo{Velocity, through release engineering}
+
+
+\section{Fault slipthrough to customers}
+
+\begin{comment}
+Map customer defects and developer bugs to areas that are covered by tests. 
+How well do the tests cover the “important parts of the system? 
+\end{comment}
+
+\section*{Outcomes}
+
+\begin{enumerate}
+
+\item \textbf{Infrastructure and Tools} A data mining and analytics infrastructure capable of delivering actionable results to developers in realtime (industry): metrics design and architecture of infrastructure.
+
+\item \textbf{Test Effectiveness and Prioritzation} 
+
+We have determined that up to 75\% of the tests running at Ericsson are redudant. Through the co-failure distrubition we are working to determine after a test run, which is the next test which would provide the most information. We plan to tie this into our tool TestGuru, which uses historical information to determine how risky a commit is and which tests should be run on a commit.
+
+\item \textbf{Anomalies: Envirnoment vs Product}
+
+There are eight Ericsson developers whose main job is to examine the failures that occur in the system after the nightly test run. Through anomaly analysis we have been able to present an ordered list of the most likely product faults and filter out the environmental problems. Our list of anomalies is used each morning at the 10am meeting to determine which faults each developer will investigate.
+
+\item \textbf{TestLogs: Localizing Faults}
+
+During code review the cause of a failure is usually obvious as the team has been manually reading over the code~\cite{}. In contrast, a test failure is usually a symtom of the underlying fault and the diagniose required to locate the cause can be time consuming~\cite{}. This is especially true at Ericsson where a test may fail one day due to an environment problem and another day from a product fault. Although our anomaly analysis helps order the faults and gives a sense of how long a test has been failing, it does not help the developer locate the cause of the faults. To do this, we plan to conduct log analysis on tests. Our co-investigator Dr. Shang is an expert in log analysis and our plan is to proceed according to the following steps. A MITACs is currently supporting a student who has begun collecting logs and filtering logs.
+
+
+
+\item \textbf{TestGuru: Commit Risk} 
+
+1. Include the output of the above, including test failures anomalies and log information, in CommitGuru to determine how likely a commit will introduce a fault.
+
+2. Use the traditional measures from CommitGuru, such as developer expertise, to determine which tests should run on which code, combine with co-failure distribution.
+
+3. Focus test writting effort on areas of the system that experience slipthrough to customer found defects. If an area many test execution, but still contains faults, can we determine which tests should be written based on the logs? \todo{perhaps add SMT?}
+
+
+
+Determining the riskiness of changes (extension of CommitGuru). A) increasing quality by assessing riskiness by extending testing to include other historical measures etc. B. Change riskiness from a test perspective. Most works evaluate test redundancy or effectiveness to determine whether a test should be run or not, we want to know how risky a piece of software is based on a tests history. RQ: How well does the CFDs relate to the tests coverage (file, path, etc)
+
+\item `Our findings indicate that “Just-In-Time Quality Assurance” may provide an effort-reducing way to focus on the most risky changes and thus reduce the costs of developing high-quality software.'
+
+\item \todo{cut} Continuous integration and velocity. Understanding how we can increase development velocity and what the bottlenecks are in release process (extension of Rigby’s work on releng)
+test prioritization is about increasing throughput … what other ways of increasing throughput?
+
+\end{enumerate}
+
+Mockus finds that test coverage and cfds are related when you control for the number of changes. \todo{how does he control for changes? ``adjusted for the number of pre- release changes.''}
+
+\section{Background}
+
+Herzig~\cite{HerzigBugModel} builds bug models to determine how well past failures predict bugs in the field. The author also includes information about the execution context, false positive rates, test failure bursts, etc. Although results are reported for test measures, the standard measures, such as churn, which are also included in their model are not reported, so it is difficult to assess how useful each measure is. What about ROC They use standard measures of social also measure standard  In conclusion, on a single project at Microsoft, test execution information 
+
+
+
+\section*{Benefits to Canada}
+
+In 2009, Ericsson acquired the majority of Nortel's North American wireless
+access business, including its market share and became the world leader in this
+market. This human expertise remains in Canada where Ericsson employs about
+1000 R\&D staff in Ottawa. Our contribution will be to make these individuals
+more productive by improving the efficiency of the test process. If this NSERC
+Engage collaboration proves to be beneficial, we will extend the project
+through MITACS. We hope that this contribution leads to a long term
+relationship with Ericsson Ottawa where we can attack their practical problems
+and abstract them to the general advancement of knowledge in software
+engineering.
+
+
+
