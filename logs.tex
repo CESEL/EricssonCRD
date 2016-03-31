@@ -1,23 +1,18 @@
 \subsection{Fault Localization through Test Logs}
 
+Identifying underlying fault of a test failure is challenging. Unlike conducting code review, when developers manually reading over the code to directly identify issues~\cite{}, a test failure can be a symptom of different underlying faults and one fault may lead to multiple test failures. Therefore, the diagnose of test failures in order to locate the underlying faults can be time consuming~\cite{}. This is especially true at Ericsson where a test may fail one day due to an environment problem and another day from a product fault. Although our anomaly analysis helps order the faults and gives a sense of how long a test has been failing, it does not help provide a precise reason and location of the fault, e.g., whether the test is failed due to a newly introduced fault. To assist practitioners of Ericsson in locating test faults, we plan to conduct log analysis on tests. Our co-investigator Dr. Shang is an expert in log analysis. We currently have a masters student, Amar, who is partially funded by a MITACs and has started to collect and clean the logs.
 
-During code review the cause of a failure is usually obvious as the team has been manually reading over the code~\cite{}. In contrast, a test failure is usually a symptom of the underlying fault and the diagnose required to locate the cause can be time consuming~\cite{}. This is especially true at Ericsson where a test may fail one day due to an environment problem and another day from a product fault. Although our anomaly analysis helps order the faults and gives a sense of how long a test has been failing, it does not help provide a precise reason and location of the fault. To do this, we plan to conduct log analysis on tests. Our co-investigator Dr. Shang is an expert in log analysis. We currently have a masters student, Amar, who is partially funded by a MITACs and has started to collect and clean the logs.
-
-The main problem at Ericsson, is that there is an overwhelming amount of detailed log information. Our plan will proceed according to the followings:
+During our ongoing collaboration with Ericsson, we find three major challenges in leveraging logs in Ericsson's testing environments: 1) there is an overwhelming amount of detailed log information, 2) the complex testing environments and context information brings noise into the logs and 3) the complex testing scenarios brings extra varieties into logs. Therefore, we plan our approach by considering address such two challenges.
 
 \begin{enumerate}
 
-\item Data: Extract the test data from a stream of events, counters, and natural languages logs.
+\item Data collection: We plan to extract all available the test data including a stream of events\todo{not sure what is this}, counters, and logs. In order to assist in understanding the complex testing environments, we extract the units from the data, \ie which nodes are connected to which mobile devices. \todo{I don't follow this one, are we doing grouping? or just label the testing node and target mobile device?}
 
-\item Units: Extract the units from the data, \ie which nodes are connected to which mobile devices.
+\item Log abstraction: We plan to abstract logs in order to reduce the context noise. Logs contain static and dynamic information. The static information is specific to each particular event while the dynamic values of the logs describe the event context. We plan to abstract logs into events by vocabulary analysis. The words that exist in the vocabulary of logs but not in the vocabulary of source code are considered dynamic values. By anonymizing such dynamic values, we can abstract logs in to events without context noise. 
 
-\item Noise: Reduce noise through log templates. Abstract the logs to keep only relevant data \todo{Ian: source vocab vs log vocab}
+\item Event sequence generation: Due to the large amounts of logs, understanding system behaviour by reading individual log lines is time consuming. We plan to generate event sequences in order to illustrate the execution flow of the tests. Due to the complex testing scenarios, such event sequences are often of great variability even for a similar execution flow. Therefore, we compress event sequences based on testing units to extract generalized event sequences and to remove irrelevant and redundant event sequences.
 
-\item Compress sequences: Combine the units and the templates to extract useful sequences and eliminate or compresses irrelevant and redundant sequences.
-
-\item Delta: Compare the logs from runs that are successful with those that are unsuccessful. We also plan to do other comparisons such as comparing the test logs from the current an previous release.
-
-\item Output: We will output the differences in logs, which should indicate why a run was unsuccessful.
+\item Event sequences comparison: We compare event sequences and we leverage the delta of event sequence to localize test faults. Our comparison consists of two folds: 1) we compare event sequences from runs that are successful with those that are unsuccessful to identify potential problematic events and 2) we compare event sequences from current tests and prior tests to identify whether the tests are failed due to different faults.
 
 \end{enumerate}
 
@@ -26,14 +21,23 @@ The main problem at Ericsson, is that there is an overwhelming amount of detaile
 %2. Compare event sequences to determine whether the failed test are due to new root causes or existing ones.
 %3. Linking logs to codes to identify/scope down? the scenarios (root causes) of the failed test.
 
+Our first novel contribution is to combine both run-time system behaviour during test (i.e., logs) and test results (i.e., pass or failure of the test) to provide actionable suggestions, such as fault localization, to practitioners. Similar approaches have been successful applied by Shang~\cite{Shang:2013:ADB:2486788.2486842} to compare the logs from test and production environments. In Ericsson's context, we do not have the production logs, so we must change our comparisons to involve previous test logs from other releases and successful and unsuccessful runs. Secondly, we consider the run-time system behaviour during test as a historical repository. Such system behaviour consists of rich information of the system during execution. We believe the knowledge from learning and analyzing the historical behaviour of the system are of huge benefits to software development and operation.
 
+%\todo{Ian: further novel aspects include ...}
 
-Our novel contribution is to abstract log information and create multiple
-baselines to identify the likely location of failure in the source code.
-Similar approaches have been successful applied by Shang~\cite{} to compare the
-logs from test and production environments. In Ericsson's context, we do not
-have the production logs, so we must change our comparisons to involve previous
-test logs from other releases and successful and unsuccessful runs. \todo{Ian:
-further novel aspects include ...}
-
-
+%for the bib
+%@inproceedings{Shang:2013:ADB:2486788.2486842,
+% author = {Shang, Weiyi and Jiang, Zhen Ming and Hemmati, Hadi and Adams, Bram and Hassan, Ahmed E. and Martin, Patrick},
+% title = {Assisting Developers of Big Data Analytics Applications when Deploying on Hadoop Clouds},
+% booktitle = {Proceedings of the 2013 International Conference on Software Engineering},
+% series = {ICSE '13},
+% year = {2013},
+% isbn = {978-1-4673-3076-3},
+% location = {San Francisco, CA, USA},
+% pages = {402--411},
+% numpages = {10},
+% url = {http://dl.acm.org/citation.cfm?id=2486788.2486842},
+% acmid = {2486842},
+% publisher = {IEEE Press},
+% address = {Piscataway, NJ, USA},
+%}
