@@ -1,0 +1,58 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{fancyhdr}
+\usepackage[margin=1.87cm]{geometry}%rounded up from 1.87, just to be safe...
+%\usepackage{parskip}
+\usepackage{times} %make sure that the times new roman is used
+
+\usepackage{xspace}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+
+\usepackage{url}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}%		     % the name
+{1}%			     % the level
+{0mm}%			     % the indent
+%{-\baselineskip}%	      % the before skip
+{.75mm}
+{.03\baselineskip}%	     % the after skip
+{\normalfont\large\bf} % the style
+}
+
+\begin{document}
+
+\fancyhead{}
+%\fancyhf{}
+\pagestyle{fancy}
+\rhead{Test Prioritization and Localization at Ericsson -- 309207-- \textbf{Peter C Rigby}} %This puts your name at the top right, outside the margin
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{center}
+\begin{LARGE}
+\noindent
+\center{{\bf Contributions from Supporting Organizations}}
+\end{LARGE}
+\end{center}
+
+\pagenumbering{gobble}
+
+Ericsson Ottawa's in-kind contribution will be substantial. The main point of
+contact will be Griffiths, who is the Section Manager for the Development
+Environment in Ottawa. Engineers on Griffiths's team will have to introduce the
+research team, especially the on-site masters student, to the test and
+development processes. They will also help the masters student to extract
+appropriate attributes and interpret them in context.  Rigby and Rahman will
+visit Ericsson at least twice a month to meet with Griffiths's team and to help
+the masters student with data mining and modeling. Further, McKenna, the lead
+test Engineer, will help in evaluating the results and ensuring that they have
+an impact on Ericsson's continuous integration environment. 
+
+Over the six month period of the grant, we expect the teams to contribute 
+an average of 12 hours per week. The on-site student will also be
+provided with a workstation and access to test equiment. In total, the in-kind
+contribution will be \$15,000.
+
+\end{document}

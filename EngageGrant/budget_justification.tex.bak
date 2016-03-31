@@ -1,0 +1,70 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{fancyhdr}
+\usepackage[margin=1.87cm]{geometry}%rounded up from 1.87, just to be safe...
+%\usepackage{parskip}
+\usepackage{times} %make sure that the times new roman is used
+
+\usepackage{xspace}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+
+\usepackage{url}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}%		     % the name
+{1}%			     % the level
+{0mm}%			     % the indent
+%{-\baselineskip}%	      % the before skip
+{.75mm}
+{.03\baselineskip}%	     % the after skip
+{\normalfont\large\bf} % the style
+}
+
+\begin{document}
+
+\fancyhead{}
+%\fancyhf{}
+\pagestyle{fancy}
+\rhead{Test Prioritization and Localization at Ericsson -- 309207-- \textbf{Peter C Rigby}} %This puts your name at the top right, outside the margin
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{center}
+\begin{LARGE}
+\noindent
+\center{{\bf Budget Justification}}
+\end{LARGE}
+\end{center}
+
+\pagenumbering{gobble}
+
+We plan to support one PhD student and one masters student with this grant.
+The students will be under the direct supervision of Dr. Rigby. 
+%
+Both student will be supported for 6 months by the proposed grant, with
+\$11,500 and \$13,000 going to the masters and PhD student, respectively. The
+Engage funds will be supplemented by funding from Concordia University. The
+Faculty of Engineering and Computer Science at Concordia University provides
+Graduate Student Support Program (GSSP) funding of \$5,000 for master's
+students and \$10,000 for PhD students. GSSP is subject to availability of
+funds and a student eligibility criteria. If the proposed grant is successful,
+we will discuss a MITACS grant with Ericsson to continue this work.
+
+As discussed in the proposal, the recruited masters student will work
+directly onsite during this grant to mine, link, and model Ericsson data.
+Following the grant period, they will return to Concordia and be funded by
+University funds.
+
+One of Rigby's PhD students, Rahman, will investigate test prioritization in
+the context of release engineering. As we discussed in the proposal, releases
+can be slowed down by repeated test runs and failures. Rahman's PhD topic is in
+release engineering, and a chapter on test prioritization would make an
+interesting novel addition in his thesis. It would also expose him to
+interesting new datasets and methodologies used by Ericsson. There is no
+expectation of intelectural property issues as the findings involve the
+Ericsson development envirnoment instead of Ericsson products.
+
+We will need a small budget to travel to Ericsson Ottawa for meetings (\$500).
+
+\end{document}

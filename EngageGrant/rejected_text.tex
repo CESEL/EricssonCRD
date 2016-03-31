@@ -1,0 +1,41 @@
+From a fault localization perspective, reducing the number of test will mean
+that there are fewer to triangulate a fault's location \cite{Yu2008ICSE}.
+
+There is a wide range of fault localization techniques from debugging to statistical bug models. While the location of a fault may not be obvious when a test fails, 
+
+ 
+Any technique that reduces the number of tests that are run, may reduce the
+fault localization effectiveness of the test run because there arewill be fewer
+tests 
+
+ that are run When using In terms of fault localization, Reducing the size of tests set may
+reduce the time to run tests, however, it can have a negative impact on fault
+localization as there 
+
+Cost models were also
+added allowing researhers to priortize tests based on test running lenght
+\cite{Do2008FSE} as well as expert and client priorities \cite{Yoo2009ISSTA}. 
+
+
+
+Early work built on control and data flow graphs,
+identifying only those parts in the data-flow that had changed
+\cite{Taha1989COMPSAC}. More recent works use dynamic program slicing to more
+accuraetly identify affect areas of the system \cite{Jeffrey2006COMPSAC}.
+
+
+
+There has been much
+excellent work using past test runs and static code analysis information such
+as paths and control flow to investigate the order in which tests should be run
+in the future \cite{Kim2002ICSE, Hadi, SunKim}. We plan to build on this work
+and to use it as a baseline to compare new techniques.
+
+
+
+The third, {\it prioritzation}, orders tests such that test that find faults
+earlier are run first. Prioritization acknowledges that it is not always
+necessary to run all tests. 
+For example, Chrome developers call a test ``flaky'', when it
+fails for without cause. 
+

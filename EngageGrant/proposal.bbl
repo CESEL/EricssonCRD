@@ -1,0 +1,94 @@
+\begin{thebibliography}{10}
+
+\bibitem{Chen1996IPL}
+T.~Y. Chen and M.~F. Lau.
+\newblock Dividing strategies for the optimization of a test suite.
+\newblock {\em Information Processing Letters}, 60(3):135 -- 141, 1996.
+
+\bibitem{DAmbros2010MSR}
+M.~D'Ambros, M.~Lanza, and R.~Robbes.
+\newblock An extensive comparison of bug prediction approaches.
+\newblock In {\em Mining Software Repositories (MSR), 2010 7th IEEE Working
+  Conference on}, pages 31--41, May 2010.
+
+\bibitem{Jeffrey2006COMPSAC}
+D.~Jeffrey and N.~Gupta.
+\newblock Test case prioritization using relevant slices.
+\newblock In {\em Proceedings of the 30th Annual International Computer
+  Software and Applications Conference - Volume 01}, COMPSAC '06, pages
+  411--420, Washington, DC, USA, 2006. IEEE Computer Society.
+
+\bibitem{Kim2002ICSE}
+J.-M. Kim and A.~Porter.
+\newblock A history-based test prioritization technique for regression testing
+  in resource constrained environments.
+\newblock In {\em Proceedings of the 24th International Conference on Software
+  Engineering}, ICSE '02, pages 119--129, New York, NY, USA, 2002. ACM.
+
+\bibitem{Kim2006ASE}
+S.~Kim, T.~Zimmermann, K.~Pan, and E.~J.~J. Whitehead.
+\newblock Automatic identification of bug-introducing changes.
+\newblock In {\em Proceedings of the 21st IEEE/ACM International Conference on
+  Automated Software Engineering}, ASE '06, pages 81--90, Washington, DC, USA,
+  2006. IEEE Computer Society.
+
+\bibitem{Marre2003TSE}
+M.~Marr{\'e} and A.~Bertolino.
+\newblock Using spanning sets for coverage testing.
+\newblock {\em IEEE Trans. Softw. Eng.}, 29(11):974--984, Nov. 2003.
+
+\bibitem{Rigby2014TOSEM}
+P.~C. Rigby, D.~M. German, L.~Cowen, and M.-A. Storey.
+\newblock Peer review on open-source software projects: Parameters, statistical
+  models, and theory.
+\newblock {\em ACM Trans. Softw. Eng. Methodol.}, 23(4):35:1--35:33, Sept.
+  2014.
+
+\bibitem{Rothermel1994ICSE}
+G.~Rothermel and M.~J. Harrold.
+\newblock A framework for evaluating regression test selection techniques.
+\newblock In {\em Proceedings of the 16th International Conference on Software
+  Engineering}, ICSE '94, pages 201--210, Los Alamitos, CA, USA, 1994. IEEE
+  Computer Society Press.
+
+\bibitem{Sherriff2007ISSRE}
+M.~Sherriff, M.~Lake, and L.~Williams.
+\newblock Prioritization of regression tests using singular value decomposition
+  with empirical change records.
+\newblock In {\em Proceedings of the The 18th IEEE International Symposium on
+  Software Reliability}, ISSRE '07, pages 81--90, Washington, DC, USA, 2007.
+  IEEE Computer Society.
+
+\bibitem{Shihab2011SPE}
+E.~Shihab, Z.~M. Jiang, B.~Adams, A.~E. Hassan, and R.~Bowerman.
+\newblock Prioritizing the creation of unit tests in legacy software systems.
+\newblock {\em Software: Practice and Experience}, 41(10):1027--1048, 2011.
+
+\bibitem{Taha1989COMPSAC}
+A.-B. Taha, S.~Thebaut, and S.-S. Liu.
+\newblock An approach to software fault localization and revalidation based on
+  incremental data flow analysis.
+\newblock In {\em Computer Software and Applications Conference, 1989. COMPSAC
+  89., Proceedings of the 13th Annual International}, pages 527--534, Sep 1989.
+
+\bibitem{Tallam2005SENotes}
+S.~Tallam and N.~Gupta.
+\newblock A concept analysis inspired greedy algorithm for test suite
+  minimization.
+\newblock {\em SIGSOFT Softw. Eng. Notes}, 31(1):35--42, Sept. 2005.
+
+\bibitem{Yoo2012STVR}
+S.~Yoo and M.~Harman.
+\newblock Regression testing minimization, selection and prioritization: a
+  survey.
+\newblock {\em Software Testing, Verification and Reliability}, 22(2):67--120,
+  2012.
+
+\bibitem{Yu2008ICSE}
+Y.~Yu, J.~A. Jones, and M.~J. Harrold.
+\newblock An empirical study of the effects of test-suite reduction on fault
+  localization.
+\newblock In {\em Proceedings of the 30th International Conference on Software
+  Engineering}, ICSE '08, pages 201--210, New York, NY, USA, 2008. ACM.
+
+\end{thebibliography}
