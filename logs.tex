@@ -25,6 +25,13 @@ During our ongoing collaboration with Ericsson, we find three major challenges i
 	\end{itemize}
 \end{enumerate}
 
+We plan two evaluation plans to measure the success of our approach. 
+\noindent \textbf{Localizing injected faults.} First, we plan to evaluate our approaching by injecting faults into the system. We inject common faults (including environmental faults and functional faults) that are priorly identified by practitioners into the system. Then we leverage our approach to perform fault localization. For the environmental faults, we examine whether we can identify the particular environment that has the fault. For the functional faults, we examine whether the context of the source code that is localized by our approach can unveil root cause of the fault. For every injected fault, we examine the prior fault that is located by our historical fault localization to understand whether the historical knowledge can assist in diagnosing the fault. To have a comprehensive evaluation of our approach, we plan to inject faults into systems in Ericsson as well as open source system software, such as Hadoop.
+
+\noindent \textbf{Evaluating by deploying our approach into practice.} Second, we plan to evaluate our approach with the practitioners in Ericsson. We deploy our approach in the real testing environment in Ericsson. For every fault from the testing environment, we provide our fault localization, and we record the actual fix of the fault. We compare the actual fix of the fault with our suggested fault localization. We want to examine: 1) how often does our approach gives accurate fault localization and 2) whether the information provided by our approach would help speed up the diagnose and fix of the fault.
+
+
+
 % oops should have used this list:
 %1. Abstracting logs into a sequence of events to illustrate the execution flow of the tests.
 %2. Compare event sequences to determine whether the failed test are due to new root causes or existing ones.
