@@ -4,3 +4,9 @@
 *.aux
 
 *.gz
+
+*.blg
+
+*.bbl
+
+proposal.pdf
