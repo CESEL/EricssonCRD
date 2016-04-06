@@ -6,7 +6,7 @@ During our ongoing collaboration with Ericsson, we find three major challenges i
 
 \begin{enumerate}
 
-\item Data collection: We plan to extract all available the test data including a stream of events\todo{not sure what is this}, counters, and logs. In order to assist in understanding the complex testing environments, we extract the units from the data, \ie which nodes are connected to which mobile devices. \todo{I don't follow this one, are we doing grouping? or just label the testing node and target mobile device?}
+\item Data collection: We plan to extract all available the test data including a stream of events, counters, and logs. In order to assist in understanding the complex testing environments, we extract the units from the data, \ie which nodes are connected to which mobile devices.
 
 \item Log abstraction: We plan to abstract logs in order to reduce the context noise. Logs contain static and dynamic information. The static information is specific to each particular event while the dynamic values of the logs describe the event context. We plan to abstract logs into events by vocabulary analysis. The words that exist in the vocabulary of logs but not in the vocabulary of source code are considered dynamic values. By anonymizing such dynamic values, we can abstract logs in to events without context noise. 
 
@@ -14,6 +14,15 @@ During our ongoing collaboration with Ericsson, we find three major challenges i
 
 \item Event sequences comparison: We compare event sequences and we leverage the delta of event sequence to localize test faults. Our comparison consists of two folds: 1) we compare event sequences from runs that are successful with those that are unsuccessful to identify potential problematic events and 2) we compare event sequences from current tests and prior tests to identify whether the tests are failed due to different faults.
 
+\item Fault localization: Based on the identified potential problematic event, we perform three types of fault localization. 
+	\begin{itemize}
+		\item Environmental fault localization. We examine the identified problematic events in different testing environments. For example, we calculate the probability of observing the problematic events for different testing nodes and different mobile devices. If the events appear frequently in a special type of testing node or mobile devices, we locate the fault for such node and devices. 
+		
+		\item Source code fault localization. With the problematic events identified from last step, we are able to find the source code that generate such log events. Dr. Shang has proposed a technique to link log lines to source code~\cite{Shang:2014:ULL:2705615.2706065}. We first leverage Dr. Shang's approach to first locate the source code where the problematic event is generated. However, there often exist high complexity in the course code of large systems, especially for the system in Ericsson. We want to recovered a more detailed context (control flow and data flow) of the systems when the problematic event is generated. In order to recover such context, we plan to first map the dynamic values in the log lines with the variables in the source code. For example, by observing a log line as ``Error, retry$=$10'', we would like to link the number ``10'' to a variable in the source, such as ``int retryNumber''. By data flow analysis on the variable, we can have rich knowledge about the context of the execution. In addition, we recover a control flow of the problematic event. By analyzing the control flow, we can have the knowledge of the values of condition statements that may lead to the problematic event. We do not only recover such data and control flow of the problematic event, but also for all the events in the event sequence that is generated from last step. We use such information to automatically location faults in the system. Such information can assists developers to future diagnose the faults.
+		
+		\item Historical fault localization. Many faults are repetitive and can be seen or resolved before. For each identified and resolved faults, we attached problematic events and the event sequences with the fix of the fault. When a problematic event is identified, we match the problematic event and event sequences with the resolved faults. If we find similar event sequence and problematic events that are attached with priorly resolved faults, we suggest developers to examine the prior fault before digging into the current fault. In addition, the people who resolved prior faults can be ideal candidates as experts to fix the current fault.
+		
+	\end{itemize}
 \end{enumerate}
 
 % oops should have used this list:
@@ -24,20 +33,3 @@ During our ongoing collaboration with Ericsson, we find three major challenges i
 Our first novel contribution is to combine both run-time system behaviour during test (i.e., logs) and test results (i.e., pass or failure of the test) to provide actionable suggestions, such as fault localization, to practitioners. Similar approaches have been successful applied by Shang~\cite{Shang:2013:ADB:2486788.2486842} to compare the logs from test and production environments. In Ericsson's context, we do not have the production logs, so we must change our comparisons to involve previous test logs from other releases and successful and unsuccessful runs. Secondly, we consider the run-time system behaviour during test as a historical repository. Such system behaviour consists of rich information of the system during execution. We believe the knowledge from learning and analyzing the historical behaviour of the system are of huge benefits to software development and operation.
 
 %\todo{Ian: further novel aspects include ...}
-
-%for the bib
-%@inproceedings{Shang:2013:ADB:2486788.2486842,
-% author = {Shang, Weiyi and Jiang, Zhen Ming and Hemmati, Hadi and Adams, Bram and Hassan, Ahmed E. and Martin, Patrick},
-% title = {Assisting Developers of Big Data Analytics Applications when Deploying on Hadoop Clouds},
-% booktitle = {Proceedings of the 2013 International Conference on Software Engineering},
-% series = {ICSE '13},
-% year = {2013},
-% isbn = {978-1-4673-3076-3},
-% location = {San Francisco, CA, USA},
-% pages = {402--411},
-% numpages = {10},
-% url = {http://dl.acm.org/citation.cfm?id=2486788.2486842},
-% acmid = {2486842},
-% publisher = {IEEE Press},
-% address = {Piscataway, NJ, USA},
-%}
