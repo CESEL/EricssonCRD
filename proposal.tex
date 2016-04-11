@@ -54,13 +54,12 @@ This research proposal builds upon an NSERC Engage and an ongoing MITACs. For
 each milestone, we describe the work that we have done over the last six months
 and the direction we plan for this proposal. The proposal consists of \todo{X}
 milestones. In Milestone 1, we will evaluate test effectiveness and build a
-test prioritization model. In Milestone 2, we will use the test failure
+test prioritization model. We also determine dependent tests that must be re-prioritized as a group. In Milestone 2, we will use the test failure
 distribution to find anomalies and differentiate between product and
 environmental faults. In Milestone 3, we will improve fault localization by
-mining test logs. In Milestone 4, we integrate our results and use them to
-quantify the change risk associated with test failures and relate them to
-customer found defects to identify which tests should be run for a change,
-which tests should be run after a failure, and which tests should be written to
+mining test logs. In Milestone 4, we integrate our results and use test
+information to quantify the risk of a change, to identify which additional
+stests should be run after a test fails, and which tests should be written to
 stop fault slipthrough to customers.  We integrate our work into a framework
 that provides actionable, timely results to Ericsson developers, we call this
 tool TestGuru.

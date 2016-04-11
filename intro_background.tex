@@ -6,11 +6,9 @@ services, such as 911 calling. At Ericsson Ottawa, testing base station
 software is time consuming and involves expensive specialized hardware. For
 example, testers may need to simulate cellular devices, such as when a base
 station is overwhelmed by requests from cell users at a music concert. In
-order to maximize the return on investment of Ericsson's testing efforts, we
-plan to use historical artifacts including past code changes, bugs, peer
-reviews, test logs, and test runs to create statistical models to (1) evalute
-test effectiveness, (2) prioritize tests, and (2) help developers locate the
-cause of a failure. The outcome of this work will advance the state-of-the-art
+order to maximize the return on investment of Ericsson's testing efforts, 
+we plan to use historical artifacts including past code changes, bugs, peer
+reviews, test logs, and test runs to create statistical models (1) to determine effective environmentally valid test priortizations, (2) to differentiate between environment and product test failues, (3) to locate faults by cleaning the noise out of test logs, (4) to quantify change risk and identify software units that need new tests, and (5) to integrate these actionable results into our proposed tool called TestGuru. The outcomes of this work will advance the state-of-the-art
 in test prioritization, test log analysis, and fault localization and provide
 Ericsson with a more efficient test infrastructure.
 
@@ -49,10 +47,6 @@ While early prioritization techniques continued to use coverage measures to
 gauge priority, more recent approaches incorporate the faults found in past
 test runs \cite{Kim2002ICSE} and change relationships among files
 \cite{Sherriff2007ISSRE} to identify high value tests. 
-%
-\todo{Cite Herzig and others}
-
-\todo{Is there really a fourth type now, which includes MSR and social measures as well?}
 
 We combine test prioritization techniques with empirical software engineering.
 Empirical researchers use historical data to create models to help developers,
@@ -61,20 +55,20 @@ fault introducing changes \cite{Kim2006ASE}, and understand the faults found
 during code review \cite{Rigby2014TOSEM}.
 %and identify relevant collaborators \cite{Cataldo2006CSCW}.  
 Relatively little work has combined test archives with information from other
-artifacts, such as bug reports and code reviews. One of the first studies to
-look at historical artifacts was done by co-investigator Dr. Shihab, during his
-PhD. In this work, he created a statistical model from the source code history
-to help developers decide where to write tests for a legacy system at
-Blackberry \cite{Shihab2011SPE}.
+artifacts, such as bug reports and code
+reviews~\cite{Shihab2011SPE,Herzig2014ISSRE}. One of the first studies to look
+at historical artifacts was done by co-investigator Dr. Shihab, during his PhD.
+In this work, he created a statistical model from the source code history to
+help developers decide where to write tests for a legacy system at Blackberry
+\cite{Shihab2011SPE}.
 
 A major factor limiting research into historically based test prioritization is
 information about past runs and links to other development artifacts.  Ericsson
-collects massive histories of logs, test runs, and development artifacts, in
+collects massive histories of test logs, test runs, and development artifacts, in
 part to provide for reproducibility of software and test lineups and auditing.
 Much of the current analysis is done manually where developers must sift
 through this information to locate the root cause of a failure. We have begun
 to automate and guide developers to help with prioritization test and
 localizing faults.
-
 
 
