@@ -31,13 +31,13 @@
 \fancyhead{}
 %\fancyhf{}
 \pagestyle{fancy}
-\rhead{-- 309207-- \textbf{Peter C Rigby}} %This puts your name at the top right, outside the margin
+\rhead{-- 309207-- \textbf{Rigby, Shihab, Shang}} %This puts your name at the top right, outside the margin
 \renewcommand{\headrulewidth}{0pt}
 
 \begin{center}
 \begin{LARGE}
 \noindent
-\center{{\bf Test Effectiveness, Localization, and Prioritized Generation in Complex Test Environments}}
+\center{{\bf Test Effectiveness, Localization, Prioritization, and Risk in Complex Test Environments}}
 \end{LARGE}
 \end{center}
 
@@ -45,29 +45,103 @@
 %sections: http://www.nserc-crsng.gc.ca/OnlineServices-ServicesEnLigne/instructions/101/crd_eng.asp
 %Synopsis
 
-\input{intro_background.tex}
+A cellular base station connects cell phones to a voice and data network via
+LTE (4G) or 3G standards. The software that runs on these base stations
+contains not only complex signalling logic with stringent real-time
+constraints, but also must be highly reliable, providing safety critical
+services, such as 911 calling. At Ericsson Ottawa, testing base station
+software is time consuming and involves expensive specialized hardware. For
+example, testers may need to simulate cellular devices, such as when a base
+station is overwhelmed by requests from cell users at a music concert. In order
+to maximize the return on investment of Ericsson's testing efforts, we plan to
+use historical artifacts including past code changes, bugs, peer reviews, test
+logs, and test runs to create statistical models (1) to determine effective
+environmentally valid test priortizations, (2) to differentiate between
+environment and product test failures, (3) to locate faults by cleaning the
+noise out of test logs, (4) to quantify change risk and identify software units
+that need new tests, and (5) to integrate these actionable results into our
+proposed tool called TestGuru. The outcomes of this work will advance the
+state-of-the-art in test prioritization, test log analysis, and fault
+localization and provide Ericsson with a more efficient test infrastructure.
+
+\section*{Background: Overview of Research Approach and Data}
+
+The proposed work intersects three areas of software engineering: test
+prioritization and effectiveness, test log analysis, and empirical software engineering. 
+
+Regression testing research has three streams of research~\cite{Yoo2012STVR}.
+%
+%: minimization, selection, and priorization\cite{Yoo2012STVR}.
+%
+The first, {\it minimization}, involves eliminating tests that are redundant or
+of low value. In the literature, the problem has been reduced to one of code
+coverage, for example, tests become redundant as the system evolves and more
+than one test covers the same control flow. As a result, much of the work in
+this area is algorithmic, such as transforming it into a spanning set problem
+\cite{Marre2003TSE}, using divide-and-conquer strategies \cite{Chen1996IPL},
+and greedy algorithms \cite{Tallam2005SENotes}. 
+%
+%These algorithms are based on source code coverage, and miss important
+%historical information, such as whether a file is at higher risk to failure
+%because it has been changed recently.
+The second, {\it selection}, uses the same static analysis techniques such as
+coverage \cite{Taha1989COMPSAC} and slicing \cite{Jeffrey2006COMPSAC}, but
+selects tests that cover source files that are at higher risk because they have
+been changed recently \cite{Rothermel1994ICSE}. 
+%
+The third, {\it prioritization}, orders tests such that expensive, low-value,
+or long running tests are run after tests that find faults early.  We
+focus on test prioritization because, at Ericsson, once a test fails an
+engineer must intervene to discover the fault, so an ordering that makes the
+test run fail early is more cost effective.
+%Running further tests has little value. 
+While early prioritization techniques continued to use coverage measures to
+gauge priority, more recent approaches incorporate the faults found in past
+test runs \cite{Kim2002ICSE} and change relationships among files
+\cite{Sherriff2007ISSRE} to identify high value tests. 
+
+We combine test prioritization techniques with empirical software engineering.
+Empirical researchers use historical data to create models to help developers,
+for example, identify bugs and risky changes \cite{DAmbros2010MSR}, locate
+fault introducing changes \cite{Kim2006ASE}, and understand the faults found
+during code review \cite{Rigby2014TOSEM}.
+%and identify relevant collaborators \cite{Cataldo2006CSCW}.  
+Relatively little work has combined test archives with information from other
+artifacts, such as bug reports and code
+reviews~\cite{Shihab2011SPE,Herzig2014ISSRE}. One of the first studies to look
+at historical artifacts was done by co-investigator Dr. Shihab, during his PhD.
+In this work, he created a statistical model from the source code history to
+help developers decide where to write tests for a legacy system at Blackberry
+\cite{Shihab2011SPE}.
+
+A major factor limiting research into historically based test prioritization is
+information about past runs and links to other development artifacts.  Ericsson
+collects massive histories of test logs, test runs, and development artifacts, in
+part to provide for reproducibility of software and test lineups and auditing.
+Much of the current analysis is done manually where developers must sift
+through this information to locate the root cause of a failure. We have begun
+to automate and guide developers to help with prioritization test and
+localizing faults.
+
 
 
 \section{Research Milestones} 
 
-This research proposal builds upon an NSERC Engage and an ongoing MITACs. For
-each milestone, we describe the work that we have done over the last six months
-and the direction we plan for this proposal. The proposal consists of \todo{X}
+This research proposal builds upon an NSERC Engage and an ongoing MITACS. For
+each milestone, we describe the work that we have done over the last seven months
+and the direction we plan for this proposal. The proposal consists of five 
 milestones. In Milestone 1, we will evaluate test effectiveness and build a
 test prioritization model. We also determine dependent tests that must be re-prioritized as a group. In Milestone 2, we will use the test failure
 distribution to find anomalies and differentiate between product and
 environmental faults. In Milestone 3, we will improve fault localization by
 mining test logs. In Milestone 4, we integrate our results and use test
 information to quantify the risk of a change, to identify which additional
-stests should be run after a test fails, and which tests should be written to
-stop fault slipthrough to customers.  We integrate our work into a framework
-that provides actionable, timely results to Ericsson developers, we call this
-tool TestGuru.
+tests should be run after a test fails, and which tests should be written to
+stop fault slipthrough to customers.  We integrate our work into a TestGuru, which is a framework
+that provides actionable, timely results to Ericsson developers.
 
-%peter needs to re-work parts of this
 \input{effectiveness.tex}
 
-%a bit of redundancy here
 \input{anomalies.tex}
 
 %logs and test for Ian
@@ -78,13 +152,17 @@ tool TestGuru.
 
 \section*{Team Expertise}
 
+\todo{basic overview of everyone}
+
 \section*{Research Management}
+
+\todo{Rigby weekly on site, Chris and Gary meeting regularly with students}
 
 \section*{Training of HQP}
 
-\todo{student names and schedule of 8 monts Ericsson, 4 at concordia}
+\todo{student names and schedule of 8 months Ericsson, 4 at Concordia}
 
-\section*{Research value and industrial relevence}
+\section*{Research value and industrial relevance}
 
 \todo{put outcomes in here}
 

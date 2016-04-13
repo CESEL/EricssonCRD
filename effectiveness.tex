@@ -1,45 +1,45 @@
 \subsection{Test Effectiveness, Prioritization, and Groups}
 
 %Ericsson problem: overwhelmed by size
-The complex test infrastructure and massive number of tests that run each night makes it difficult for Ericsson testers and managers to determine how effectively they are testing their software. We determined test effectiveness and initial test prioritization schemes. We plan novel work on prioritization in the context were not all tests are independent.
+The complex test infrastructure and massive number of tests that run each night makes it difficult for Ericsson testers and managers to determine how effectively they are testing their software. We calculate test effectiveness and develop an initial test prioritization scheme. We plan novel work on prioritization in the context were not all tests are independent.
 
 %We began our NSERC Engage by dd
 We began our NSERC Engage by extracting, cleaning, and linking test runs with problem reports and the version control system. Ericsson managers wanted to understand two basic questions: which software units (areas of the system) have the largest number of failing tests, and which tests find the largest number of faults. 
 %
-This initial work took a researcher associate, Zhu, four months. The industrial outcome of this work has been significant. We found that 25\% of faults find 80\% of the bugs that were identified by testers as true defects. 
+This initial work took a researcher associate, Zhu, four months. The industrial outcome of this work has been significant. We found that the top 25\% of tests, ranked by past faults detected, found over 80\% of future faults.
 %
 %Ericsson improved its nightly test performance by running the tests that found few faults less frequently. \todo{I think this has had problems because really they are KPIs. Add Maaz's results? Also, what about the fact that its hard to reorder} 
 %
-This helped test managers in their ongoing test re-writing and re-organization efforts. Further, the development team received a list of their most common software units which lead to discussion of the cause of the failures allowing them to mark code and tests for re-work. \todo{More from Gary and Chris}. 
+This helped test managers in their ongoing test re-writing and re-organization efforts. Further, the development team received a list of their most common software units which lead to discussion of the cause of the failures allowing them to mark code and tests for re-work. 
 
-From a research perspective, our results replicate findings in a new context. First, as Mockus \etal~\cite{} found, having high test coverage comes at the cost of high redundancy. This redundancy results in high maintenance overhead and does not necessarily mean that fewer customer found defects will be caught by tests. Proposed work on this finding is discussed in \todo{Section}. Second, our findings supports research into that prioritize tests based on past runs~\cite{Porter,Recent}. In this proposal, we constrain possible prioritzations/reorderings into dependent groups of tests to reduce the false positives introduced by inappropriate reorderings.
+From a research perspective, our results replicate findings in a new context. As Mockus \etal~\cite{Mockus2009ESEM} found, having high test coverage comes at the cost of high redundancy. This redundancy results in high maintenance overhead as developers write tests that are not necessarily effective at finding customer defects. Proposed work on this finding is discussed in Section~\ref{secTestGuru}. Our findings also confirm the growing consensus that tests can be effectively prioritized by how often a test has failed in the past~\cite{Kim2002ICSE,Hemmati}. In this proposal, we constrain possible prioritzations/reorderings into dependent groups of tests to reduce the false positives introduced by inappropriate reorderings.
 
-Existing work on test prioritization usually assumes that tests are independent and can be run in any order. In test environments that involve complex hardware and software, the order of test cannot be assumed to be independent. For example, an effort by Ericsson \todo{Sweden} to reorder and re-write test to be independent was done at \todo{great cost etc, was it successful, the main challenge was to ...}. 
+Existing work on test prioritization usually assume that tests are independent and can be run in any order~\cite{GooglePapper,Hemmati}. In test environments that involve complex hardware and software, the order of test cannot be assumed to be independent. For example, an effort by Ericsson \todo{Sweden} to reorder and re-write test to be independent was done at \todo{Chris and Gary comment on this: great cost etc, was it successful, the main challenge was to ...}. 
 
 \textbf{Dependent Groups of Tests}\\
 We propose a novel research approach that groups sets of dependent tests into atomic units that can be reordered only as as a group. 
 %
-First, we plan to run simulations on past test runs to show that the new ordering would have found faults earlier and with less test runs. The simulation is evaluated based on the number of slipthroughs, \ie tests that would have been run but were not that found faults, vs how much earlier a fault is found and how many fewer tests need to be run to find the fault. 
+First, we plan to run simulations on past test runs to show that the new ordering would have found faults earlier and with less test runs. The simulation is evaluated based how much earlier a fault is found and how many fewer tests need to be run to find the fault. 
 %
-In the simulation, no new tests are run, so we assume that tests are independent and can be ordered arbitrarily. If the simulations show that the benefit of re-ordering is low, then the product team need will not need expend any further effort and can keep the existing order.
+In the simulation we use the past outcome and no new tests are run. This requires us to assume that tests are independent and can be ordered arbitrarily. If the simulations show that the benefit of re-ordering is low, then the product team need will not need expend any further effort and can keep the existing order.
 
-Second, to remove the test independence assumption, we must run actual tests with a new order. At Ericsson tests are expensive and we cannot re-run the entire set of tests across old products.
+Second, to remove the test independence assumption, we must run actual tests with a new order. At Ericsson tests are expensive and we cannot re-run the entire suite of tests. 
 %
-Since we must conduct our experiment of test ordering in a live environment, there are two possibilities when a failure occurs. First, the test order is not valid. Second, a fault has been found in the system. To deal with these two conditions, we design our experiment as follows:
+Since we must conduct our experiment of test ordering in a live environment, there are two possibilities when a failure occurs: the test order is not valid or a fault has been found in the system. To deal with these two conditions, we design our experiment as follows:
 
 \begin{enumerate}
 
-\item prioritize tests on the basis of their past test failure distribution~\cite{}. We also plan to use other historical information, see \todo{Section}.
+\item prioritize tests on the basis of their past test failure distribution~\cite{Kim2002ICSE,Hemmati}. We also plan to use other historical information, such as author expertise and file churn, see Section~\ref{secTestGuru}.
 
-\item if a group of tests fail, re-run in the normal order. If there are no fails on re-run, then mark the tests as dependent. If there are fails on re-run, send the failures to Ericsson testers for investigation because it is likely true failure. Note, failing tests are automatically re-run at Ericsson, so the additional cost will be minimal.
+\item if a group of tests fail, re-run in the normal order. If there are no fails on re-run, then we mark the tests as dependent. If there are fails on re-run, we send the failures to Ericsson testers for investigation because it is likely true failure. Since failing tests are automatically re-run at Ericsson, the additional cost will be minimal.
  
-\item if the tests pass, mark them as independent.
+\item if the tests pass, we mark them as independent.
 
 \end{enumerate}
 
 Initially, there will be large number of failures that will be the result of inappropriate orderings. However, as our dataset grows, we will be able to determine the likelihood that a failure is related to a defect vs a failure related to an inappropriate ordering. Tests that fail together more often than by chance will be grouped into atomic units. These groups of tests will be reordered as a single grouping.
 
-The final stage of this research will be to simulate the added benefit of breaking a test group. We will simulate the time savings and compare it with the test dependencies to provide an ordered cost benefit analysis. This simulation will allow Ericsson managers to determine which test clusters to re-structure first.
+The final stage of this research will be to simulate the added benefit of breaking a test group. We will simulate the time savings and compare it with the test dependencies to provide a list of test groups ranked by a cost benefit analysis. This simulation will allow Ericsson managers to determine which test groups to re-structure first.
 
 %Novel Future: using co-failure distributions to order tests, Ans: which test will give the most new information, add to TestGuru
 
