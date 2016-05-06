@@ -1,4 +1,5 @@
 \subsection{Fault Localization through Test Logs}
+\label{secLogs}
 
 Identifying the underlying fault from a test failure is challenging. Unlike conducting code review, where developers manually read over the code to directly identify issues~\cite{Rigby2014TOSEM}, a test failure can be a symptom of multiple underlying faults and one fault may lead to multiple test failures. Therefore, the diagnosis of test failures can be time consuming~\cite{Glerum:2009:DLT:1629575.1629586}. This is especially true at Ericsson where a test may fail one day due to an environment problem and another day from a product fault. Although our anomaly analysis helps prioritize the test failures and gives a sense of how long a test has been failing, it does not help provide a precise reason and location for a fault.
 %, e.g., whether the test is failed due to a newly introduced fault. 
