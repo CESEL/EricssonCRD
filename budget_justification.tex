@@ -1,0 +1,57 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{fancyhdr}
+\usepackage[margin=1.87cm]{geometry}%rounded up from 1.87, just to be safe...
+%\usepackage{parskip}
+\usepackage{times} %make sure that the times new roman is used
+
+\usepackage{xspace}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+
+\usepackage{url}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}%		     % the name
+{1}%			     % the level
+{0mm}%			     % the indent
+%{-\baselineskip}%	      % the before skip
+{.75mm}
+{.03\baselineskip}%	     % the after skip
+{\normalfont\large\bf} % the style
+}
+
+\begin{document}
+
+\fancyhead{}
+%\fancyhf{}
+\pagestyle{fancy}
+\rhead{-- 309207-- \textbf{Rigby, Shihab, Shang}} %This puts your name at the top right, outside the margin
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{center}
+\begin{LARGE}
+\noindent
+\center{{\bf Budget Justification}}
+\end{LARGE}
+\end{center}
+
+\pagenumbering{gobble}
+
+We plan to support two PhD students and two masters students with this grant.
+The students will be under the supervision of Drs. Rigby, Shihab, and Shang. Rigby will spend time onsite to supervise research. While at Ericsson student will also report to McKenna and Griffiths.
+
+Masters students will be supported for two years and PhD students will be supported for three. Two masters students, Rehman and Amar have already completed 1 year and .5 years of their degree through an NSERC Engage and MITACs, respectively.
+
+PhD students will receive \$22,500 per year. Masters students will receive \$17,000 per year. 
+
+Students will receive a loaned laptop from Ericsson to conduct research, so there is no equipment costs.
+
+We will need a small budget to travel to Ericsson Ottawa for meetings (\$2,000) and a budget to allow students to present at conferences (\$8,000).
+
+There is no expectation of intellectual property issues as the findings involve
+the Ericsson development environment instead of Ericsson products.
+
+
+\end{document}
