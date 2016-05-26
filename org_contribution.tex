@@ -1,0 +1,65 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{fancyhdr}
+\usepackage[margin=1.87cm]{geometry}%rounded up from 1.87, just to be safe...
+%\usepackage{parskip}
+\usepackage{times} %make sure that the times new roman is used
+
+\usepackage{xspace}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+
+\usepackage{url}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}%		     % the name
+{1}%			     % the level
+{0mm}%			     % the indent
+%{-\baselineskip}%	      % the before skip
+{.75mm}
+{.03\baselineskip}%	     % the after skip
+{\normalfont\large\bf} % the style
+}
+
+\begin{document}
+
+\fancyhead{}
+%\fancyhf{}
+\pagestyle{fancy}
+\rhead{-- 309207-- \textbf{Rigby, Shihab, Shang}} %This puts your name at the top right, outside the margin
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{center}
+\begin{LARGE}
+\noindent
+\center{{\bf Contributions from Supporting Organization}}
+\end{LARGE}
+\end{center}
+
+\pagenumbering{gobble}
+
+Ericsson Ottawa's in-kind contribution will be substantial. The main point of
+contact will be Griffiths, who is the Section Manager for the Development
+Environment in Ottawa. Engineers on Griffiths's team will have to introduce the
+research team, especially the on-site students, to the test and development
+processes. They will also help the students extract appropriate attributes and
+interpret them in context, which is necessary for all milestones.
+
+McKenna, the lead test Engineer at Ericsson Ottawa, will help in evaluating the
+results and ensuring that they have an impact on Ericsson's continuous
+integration environment. We have already had evidence of this on preliminary results from Milestone 2 and 3. 
+
+Mukadam is a tools developer at Ericsson Ottawa. He is currently working on the test prioritization infrastructure. He will be involved in Milestone 1 on test prioritization and will also help in the development of TestGuru in Milestone 4.
+
+For the duration of the grant, we expect the Ericsson teams to contribute an
+average of 10 hours per week. In total, the salaries for technical staff in-kind contribution will be in excess of \$20,000 per year.
+
+\textbf{Computer equipment}
+Each researcher will be provided with an HP laptop to conduct their research. These machines are standard at Ericsson and each cost \$90 per month. There will be four students and one onsite professor, as a result the cost of the equipment paid for by Ericsson will be \$5,400 per year.
+
+\textbf{Teaching release}
+Given the applied nature of the research, it is important to have one professor onsite once a week to meet with student researchers, observe and discuss with practitioners, and help in the mining, cleaning, and analysis of the onsite Ericsson data. Ericsson will pay for one course teaching release of per year. A one course release cost \$10,839 at Concordia and is counted by NSERC as an leveraged in-kind contribution. 
+
+
+\end{document}
